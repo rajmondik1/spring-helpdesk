@@ -4,6 +4,7 @@ public class ChatMessage {
     private MessageType type;
     private String Content;
     private String sender;
+    private String token;
 
     public enum MessageType {
         CHAT, JOIN, LEAVE
@@ -31,5 +32,13 @@ public class ChatMessage {
 
     public void setSender(String sender) {
         this.sender = sender;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

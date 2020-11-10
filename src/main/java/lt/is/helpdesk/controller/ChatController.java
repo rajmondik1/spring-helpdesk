@@ -1,6 +1,7 @@
 package lt.is.helpdesk.controller;
 
 import lt.is.helpdesk.model.ChatMessage;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -12,19 +13,21 @@ public class ChatController {
 
     // what is payload?
     // MessageMapping - message with specified route will be routed to those endpoints
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+    @MessageMapping("/chat.sendMessage/{token}")
+    @SendTo("/topic/{token}")
+    public ChatMessage sendMessage(@Payload ChatMessage chatMessage, @DestinationVariable String token) {
         return chatMessage;
     }
 
-    @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
+    @MessageMapping("/chat.addUser/{token}")
+    @SendTo("/topic/{token}")
     public ChatMessage addUser(
             @Payload ChatMessage chatMessage,
-            SimpMessageHeaderAccessor headerAccessor
+            SimpMessageHeaderAccessor headerAccessor,
+            @DestinationVariable String token
     ) {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        headerAccessor.getSessionAttributes().put("token", chatMessage.getToken());
         return chatMessage;
     }
 }

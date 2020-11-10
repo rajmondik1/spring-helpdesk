@@ -1,6 +1,7 @@
 package lt.is.helpdesk.controller;
 
 import lt.is.helpdesk.model.ChatMessage;
+import lt.is.helpdesk.service.WebSocketConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,19 @@ public class WebSocketEventListener {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
         String username = (String) headerAccessor.getSessionAttributes().get("username");
+        String token = (String) headerAccessor.getSessionAttributes().get("token");
         if (username != null) {
             logger.info("User disconnected: " + username);
 
             ChatMessage chatMessage = new ChatMessage();
             chatMessage.setType(ChatMessage.MessageType.LEAVE);
             chatMessage.setSender(username);
+            chatMessage.setToken(token);
+System.out.println(token);
+System.out.println(WebSocketConnectionService.getInstance().connections.toString());
+            WebSocketConnectionService.getInstance().connections.remove(token);
 
-            messageSendingOperations.convertAndSend("/topic/public", chatMessage);
+            messageSendingOperations.convertAndSend("/topic/" + token, chatMessage);
         }
     }
 }
