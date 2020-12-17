@@ -1,6 +1,6 @@
 package lt.is.helpdesk.controller;
 
-import lt.is.helpdesk.model.ChatMessage;
+import lt.is.helpdesk.entity.ChatMessage;
 import lt.is.helpdesk.service.WebSocketConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +36,7 @@ public class WebSocketEventListener {
             ChatMessage chatMessage = new ChatMessage();
             chatMessage.setType(ChatMessage.MessageType.LEAVE);
             chatMessage.setSender(username);
-            chatMessage.setToken(token);
+//            chatMessage.setToken(token);
 System.out.println(token);
 System.out.println(WebSocketConnectionService.getInstance().connections.toString());
             WebSocketConnectionService.getInstance().connections.remove(token);
