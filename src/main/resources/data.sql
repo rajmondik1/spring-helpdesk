@@ -1,15 +1,11 @@
-DROP TABLE IF EXISTS testas;
-
-DROP TABLE autoriai;
-
-CREATE TABLE chat_messages (
+CREATE TABLE IF NOT EXISTS chat_messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     content VARCHAR(250) NOT NULL,
     senderName VARCHAR(250) NOT NULL,
     sessionId NUMERIC (12,0) NOT NULL
 );
 
-CREATE TABLE chat_session (
+CREATE TABLE IF NOT EXISTS chat_session (
     id INT AUTO_INCREMENT PRIMARY KEY,
     messages VARCHAR(250) NOT NULL
 );
