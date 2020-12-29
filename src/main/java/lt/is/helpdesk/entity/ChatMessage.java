@@ -3,6 +3,7 @@ package lt.is.helpdesk.entity;
 import javax.persistence.*;
 
 public class ChatMessage {
+
     private Long id;
 
     private MessageType type;
