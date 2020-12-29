@@ -2,18 +2,13 @@ package lt.is.helpdesk.entity;
 
 import javax.persistence.*;
 
-@Entity
 public class ChatMessage {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private MessageType type;
     private String Content;
     private String sender;
 
-    @ManyToOne
     private ChatSession session;
 
     public enum MessageType {
