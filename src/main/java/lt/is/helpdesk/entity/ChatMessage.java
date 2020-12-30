@@ -2,19 +2,18 @@ package lt.is.helpdesk.entity;
 
 import javax.persistence.*;
 
+@Entity()
+@Table(name = "chat_message")
 public class ChatMessage {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private MessageType type;
     private String Content;
     private String sender;
 
+    @ManyToOne
     private ChatSession session;
-
-    public enum MessageType {
-        CHAT, JOIN, LEAVE
-    }
 
     public Long getId() {
         return id;
@@ -22,14 +21,6 @@ public class ChatMessage {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public MessageType getType() {
-        return type;
-    }
-
-    public void setType(MessageType type) {
-        this.type = type;
     }
 
     public String getContent() {

@@ -34,11 +34,9 @@ public class WebSocketEventListener {
             logger.info("User disconnected: " + username);
 
             ChatMessage chatMessage = new ChatMessage();
-            chatMessage.setType(ChatMessage.MessageType.LEAVE);
             chatMessage.setSender(username);
-//            chatMessage.setToken(token);
-System.out.println(token);
-System.out.println(WebSocketConnectionService.getInstance().connections.toString());
+            System.out.println(token);
+            System.out.println(WebSocketConnectionService.getInstance().connections.toString());
             WebSocketConnectionService.getInstance().connections.remove(token);
 
             messageSendingOperations.convertAndSend("/topic/" + token, chatMessage);

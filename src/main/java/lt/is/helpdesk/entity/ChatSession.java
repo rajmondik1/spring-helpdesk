@@ -3,12 +3,17 @@ package lt.is.helpdesk.entity;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity()
+@Table(name = "chat_session")
 public class ChatSession {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String token;
 
+    @OneToMany(mappedBy = "session")
     private List<ChatMessage> messages;
 
     public void setId(Long id) {
