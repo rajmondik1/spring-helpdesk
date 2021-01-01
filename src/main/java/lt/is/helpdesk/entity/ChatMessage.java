@@ -3,16 +3,16 @@ package lt.is.helpdesk.entity;
 import javax.persistence.*;
 
 @Entity()
-@Table(name = "chat_message")
+@Table()
 public class ChatMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String Content;
+    private String content;
     private String sender;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private ChatSession session;
 
     public Long getId() {
@@ -24,11 +24,11 @@ public class ChatMessage {
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     public String getSender() {

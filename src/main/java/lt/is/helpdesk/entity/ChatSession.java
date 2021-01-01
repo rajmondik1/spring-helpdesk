@@ -1,20 +1,28 @@
 package lt.is.helpdesk.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity()
-@Table(name = "chat_session")
+@Table()
 public class ChatSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String token;
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
+    private List<ChatMessage> messages = new ArrayList<ChatMessage>();
 
-    @OneToMany(mappedBy = "session")
-    private List<ChatMessage> messages;
+    // TODO: Implement chat session status
+
+    public ChatSession() {
+    }
+
+    public ChatSession(String id) {
+        this.id = Long.getLong(id);
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -22,14 +30,6 @@ public class ChatSession {
 
     public Long getId() {
         return id;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public List<ChatMessage> getMessages() {
