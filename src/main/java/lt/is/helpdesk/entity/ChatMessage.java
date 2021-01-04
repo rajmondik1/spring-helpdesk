@@ -12,7 +12,7 @@ public class ChatMessage {
     private String content;
     private String sender;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     private ChatSession session;
 
     public Long getId() {

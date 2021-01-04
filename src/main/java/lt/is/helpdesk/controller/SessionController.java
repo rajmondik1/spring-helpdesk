@@ -38,5 +38,4 @@ public class SessionController {
     List<ChatSessionDTO> list() {
         return sessionService.list();
     }
-
 }
