@@ -4,12 +4,10 @@ public class ChatMessageDTO {
 
     private String content;
     private String sender;
-    private Long session;
 
-    public ChatMessageDTO(String content, String sender, Long session) {
+    public ChatMessageDTO(String content, String sender) {
         this.content = content;
         this.sender = sender;
-        this.session = session;
     }
 
     public String getContent() {
@@ -20,7 +18,4 @@ public class ChatMessageDTO {
         return sender;
     }
 
-    public Long getSession() {
-        return session;
-    }
 }
