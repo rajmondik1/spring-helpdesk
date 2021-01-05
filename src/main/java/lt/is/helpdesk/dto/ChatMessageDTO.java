@@ -25,5 +25,4 @@ public class ChatMessageDTO {
     public Date getDate() {
         return date;
     }
-
 }

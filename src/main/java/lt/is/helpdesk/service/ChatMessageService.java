@@ -1,6 +1,7 @@
 package lt.is.helpdesk.service;
 
 import lt.is.helpdesk.dto.ChatMessageDTO;
+import lt.is.helpdesk.dto.ChatSessionDTO;
 import lt.is.helpdesk.entity.ChatMessage;
 import lt.is.helpdesk.entity.ChatSession;
 import lt.is.helpdesk.repository.ChatMessageRepository;
@@ -31,7 +32,6 @@ public class ChatMessageService {
 
         return chatMessage;
     }
-
 
     public List<ChatMessageDTO> listAllForSession(ChatSession session) {
         List<ChatMessageDTO> list = new ArrayList<>();
