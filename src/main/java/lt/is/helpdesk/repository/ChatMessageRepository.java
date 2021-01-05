@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ChatMessageRepository extends CrudRepository<ChatMessage, String> {
     List<ChatMessage> findBySession(ChatSession session);
+
+    void save();
 }

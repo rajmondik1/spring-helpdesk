@@ -1,6 +1,7 @@
 package lt.is.helpdesk.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity()
 @Table()
@@ -11,6 +12,7 @@ public class ChatMessage {
     private Long id;
     private String content;
     private String sender;
+    private Date date;
 
     @ManyToOne()
     private ChatSession session;
@@ -46,4 +48,8 @@ public class ChatMessage {
     public void setSession(ChatSession session) {
         this.session = session;
     }
+
+    public Date getDate() { return date; }
+
+    public void setDate() { }
 }

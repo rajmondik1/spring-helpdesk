@@ -1,7 +1,6 @@
 package lt.is.helpdesk.service;
 
 import lt.is.helpdesk.dto.ChatMessageDTO;
-import lt.is.helpdesk.dto.ChatSessionDTO;
 import lt.is.helpdesk.entity.ChatMessage;
 import lt.is.helpdesk.entity.ChatSession;
 import lt.is.helpdesk.repository.ChatMessageRepository;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,10 +21,12 @@ public class ChatMessageService {
     @Autowired
     private ChatSessionRepository chatSessionRepository;
 
-    public ChatMessage save(ChatMessage chatMessage) {
+    public ChatMessage save(ChatMessage chatMessage) { //cia date padaryti kad tik INSERT
         chatMessageRepository.save(chatMessage);
         ChatSession session = chatMessage.getSession();
         chatSessionRepository.save(session);
+        chatMessage.setDate();
+        chatMessageRepository.save();
 
         return chatMessage;
     }
