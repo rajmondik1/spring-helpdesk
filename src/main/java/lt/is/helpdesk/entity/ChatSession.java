@@ -32,6 +32,10 @@ public class ChatSession {
         return id;
     }
 
+    public void addMessage(ChatMessage message) {
+        this.messages.add(message);
+    }
+
     public List<ChatMessage> getMessages() {
         return messages;
     }

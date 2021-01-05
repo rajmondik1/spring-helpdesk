@@ -49,7 +49,11 @@ public class ChatMessage {
         this.session = session;
     }
 
-    public Date getDate() { return date; }
+    public Date getDate() {
+        return date;
+    }
 
-    public void setDate() { }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

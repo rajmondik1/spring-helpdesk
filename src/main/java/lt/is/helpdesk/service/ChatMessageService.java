@@ -21,15 +21,17 @@ public class ChatMessageService {
     @Autowired
     private ChatSessionRepository chatSessionRepository;
 
-    public ChatMessage save(ChatMessage chatMessage) { //cia date padaryti kad tik INSERT
+    public ChatMessage save(ChatMessage chatMessage) {
+        chatMessage.setDate(new Date());
         chatMessageRepository.save(chatMessage);
-        ChatSession session = chatMessage.getSession();
-        chatSessionRepository.save(session);
-        chatMessage.setDate();
-        chatMessageRepository.save();
+
+//        ChatSession session = chatMessage.getSession();
+//        session.addMessage(chatMessage);
+//        chatSessionRepository.save(session);
 
         return chatMessage;
     }
+
 
     public List<ChatMessageDTO> listAllForSession(ChatSession session) {
         List<ChatMessageDTO> list = new ArrayList<>();
@@ -37,7 +39,7 @@ public class ChatMessageService {
         chatMessageRepository
                 .findBySession(session)
                 .iterator()
-                .forEachRemaining(e -> list.add(new ChatMessageDTO(e.getContent(), e.getSender())))
+                .forEachRemaining(e -> list.add(new ChatMessageDTO(e.getContent(), e.getSender(), e.getDate())))
         ;
         return list;
     }
