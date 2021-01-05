@@ -27,7 +27,8 @@ public class ChatController {
                 "/messages",
                 new ChatMessageDTO(
                         saved.getContent(),
-                        saved.getSender()
+                        saved.getSender(),
+                        saved.getDate()
                 )
         );
     }

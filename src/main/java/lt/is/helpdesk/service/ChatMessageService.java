@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,9 +23,12 @@ public class ChatMessageService {
     private ChatSessionRepository chatSessionRepository;
 
     public ChatMessage save(ChatMessage chatMessage) {
+        chatMessage.setDate(new Date());
         chatMessageRepository.save(chatMessage);
-        ChatSession session = chatMessage.getSession();
-        chatSessionRepository.save(session);
+
+//        ChatSession session = chatMessage.getSession();
+//        session.addMessage(chatMessage);
+//        chatSessionRepository.save(session);
 
         return chatMessage;
     }
@@ -35,7 +39,7 @@ public class ChatMessageService {
         chatMessageRepository
                 .findBySession(session)
                 .iterator()
-                .forEachRemaining(e -> list.add(new ChatMessageDTO(e.getContent(), e.getSender())))
+                .forEachRemaining(e -> list.add(new ChatMessageDTO(e.getContent(), e.getSender(), e.getDate())))
         ;
         return list;
     }
