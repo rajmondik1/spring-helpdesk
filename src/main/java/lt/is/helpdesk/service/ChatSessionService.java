@@ -3,6 +3,7 @@ package lt.is.helpdesk.service;
 import lt.is.helpdesk.dto.ChatSessionDTO;
 import lt.is.helpdesk.entity.ChatMessage;
 import lt.is.helpdesk.entity.ChatSession;
+import lt.is.helpdesk.entity.ChatSessionStatus;
 import lt.is.helpdesk.repository.ChatSessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class ChatSessionService {
         chatSessionRepository.save(chatSession);
         return chatSession;
     }
+
+
 
     public ChatSession find(Long id) {
         return chatSessionRepository.findById(id);

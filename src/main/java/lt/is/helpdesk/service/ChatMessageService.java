@@ -22,6 +22,10 @@ public class ChatMessageService {
     @Autowired
     private ChatSessionRepository chatSessionRepository;
 
+    boolean isClient() {
+        return false;
+    }
+
     public ChatMessage save(ChatMessage chatMessage) {
         chatMessage.setDate(new Date());
         chatMessageRepository.save(chatMessage);
