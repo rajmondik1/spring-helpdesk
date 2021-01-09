@@ -13,12 +13,13 @@ public class ChatSession {
     private Long id;
 
     @Enumerated
-    private ChatSessionStatus status;
+    private ChatSessionStatus status = ChatSessionStatus.ACTIVE;
 
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
     private List<ChatMessage> messages = new ArrayList<ChatMessage>();
 
-    public ChatSession() { }
+    public ChatSession() {
+    }
 
     public ChatSession(String id) {
         this.id = Long.getLong(id);
@@ -40,9 +41,15 @@ public class ChatSession {
         return messages;
     }
 
-    public void setMessages(List<ChatMessage> messages) { this.messages = messages; }
+    public void setMessages(List<ChatMessage> messages) {
+        this.messages = messages;
+    }
 
-    public ChatSessionStatus getStatus() { return status; }
+    public ChatSessionStatus getStatus() {
+        return status;
+    }
 
-    public void setStatus(ChatSessionStatus status) { this.status = status; }
+    public void setStatus(ChatSessionStatus status) {
+        this.status = status;
+    }
 }

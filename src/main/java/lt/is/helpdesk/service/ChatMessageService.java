@@ -1,14 +1,12 @@
 package lt.is.helpdesk.service;
 
 import lt.is.helpdesk.dto.ChatMessageDTO;
-import lt.is.helpdesk.dto.ChatSessionDTO;
 import lt.is.helpdesk.entity.ChatMessage;
 import lt.is.helpdesk.entity.ChatSession;
 import lt.is.helpdesk.repository.ChatMessageRepository;
 import lt.is.helpdesk.repository.ChatSessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,10 +19,6 @@ public class ChatMessageService {
 
     @Autowired
     private ChatSessionRepository chatSessionRepository;
-
-    boolean isClient() {
-        return false;
-    }
 
     public ChatMessage save(ChatMessage chatMessage) {
         chatMessage.setDate(new Date());
