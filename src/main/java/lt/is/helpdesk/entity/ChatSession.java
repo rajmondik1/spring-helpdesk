@@ -12,10 +12,11 @@ public class ChatSession {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Enumerated
+    private ChatSessionStatus status = ChatSessionStatus.ACTIVE;
+
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
     private List<ChatMessage> messages = new ArrayList<ChatMessage>();
-
-    // TODO: Implement chat session status
 
     public ChatSession() {
     }
@@ -42,5 +43,13 @@ public class ChatSession {
 
     public void setMessages(List<ChatMessage> messages) {
         this.messages = messages;
+    }
+
+    public ChatSessionStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ChatSessionStatus status) {
+        this.status = status;
     }
 }
