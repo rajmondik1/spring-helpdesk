@@ -41,4 +41,8 @@ public class ChatSessionService {
         chatSessionRepository.save(session);
         return new ChatSessionDTO(session.getId(), session.getStatus());
     }
+
+    public void deleteSession(ChatSession session) {
+        chatSessionRepository.delete(session);
+    }
 }

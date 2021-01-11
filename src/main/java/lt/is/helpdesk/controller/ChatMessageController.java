@@ -12,8 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/chat") // +/session
-// localhost:8080 +/session
+@RequestMapping("/chat")
 
 public class ChatMessageController {
 
